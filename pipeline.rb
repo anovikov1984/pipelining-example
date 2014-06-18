@@ -10,12 +10,4 @@ Net::HTTP.start 'pubsub.pubnub.com' do |http|
     puts res.body[0..60].inspect
     puts
   end
-
-  sleep 1
-
-  http.pipeline [req1, req2, req3] do |res|
-    puts res.code
-    puts res.body[0..60].inspect
-    puts
-  end
 end

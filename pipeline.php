@@ -5,7 +5,7 @@ $ch1 = curl_init();
 $ch2 = curl_init();
 $ch3 = curl_init();
 
-$header = array("Accept: */*", "Connection: keep-alive", "Keep-Alive: 300", 'Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3');
+$header = array("Accept: */*", "Connection: keep-alive", "Keep-Alive: timeout=15,max=100", 'Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3');
 
 // set URL and other appropriate options
 curl_setopt($ch1, CURLOPT_HEADER, $header);
@@ -19,7 +19,7 @@ curl_setopt($ch3, CURLOPT_URL, 'http://pubsub.pubnub.com/publish/demo/demo/0/my_
 $mh = curl_multi_init();
 
 echo curl_multi_setopt($mh, CURLMOPT_PIPELINING, 1);
-echo curl_multi_setopt($mh, CURLMOPT_MAXCONNECTS, 4);
+echo curl_multi_setopt($mh, CURLMOPT_MAXCONNECTS, 1);
 
 //add the two handles
 curl_multi_add_handle($mh,$ch1);
